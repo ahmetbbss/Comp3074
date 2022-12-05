@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { PureComponent, useState } from 'react';
 import { View, Text, StyleSheet, Button, Switch, TextInput } from 'react-native';
 
 
@@ -38,12 +38,16 @@ function Main({ navigation }) {
 
             <View>
                 <Text style={styles.title}>Flooring Calculator</Text>
-                <Text style={styles.subtitle}>Enter the size of the room</Text>
+
+                <View style={styles.div}>
+                    <Text style={styles.div}>Enter the size of the room</Text>
+                </View>
+                
             </View>
 
-            <View>
+            <View style={styles.subtitle}>
                 <TextInput
-                    style={styles.input}
+                    style={styles.remember}
                     placeholder="Size"
                     keyboardType="numeric"
                     value={size}
@@ -51,10 +55,14 @@ function Main({ navigation }) {
                 />
             </View>
 
-            <View>
-                <Text style={styles.subtitle}>Enter the cost of the flooring</Text>
+            <View style={styles.div}>
+                <Text style={styles.div}>Enter the cost of the flooring</Text>
+            </View>
+            
+            <View style={styles.subtitle}>
+                
                 <TextInput
-                    style={styles.input}
+                    style={styles.remember}
                     placeholder="Flooring Cost"
                     keyboardType="numeric"
                     value={flooring_cost}
@@ -62,10 +70,14 @@ function Main({ navigation }) {
                 />
             </View>
 
-            <View>
-                <Text style={styles.subtitle}>Enter the cost of the installation</Text>
+            <View style={styles.div}>
+                <Text style={styles.div}>Enter the cost of the installation</Text>
+            </View>
+            
+            <View style={styles.subtitle}>
+                
                 <TextInput
-                    style={styles.input}
+                    style={styles.remember}
                     placeholder="Installation Cost"
                     keyboardType="numeric"
                     value={installation_cost}
@@ -77,27 +89,29 @@ function Main({ navigation }) {
             </View>
 
             <View style={styles.switch}>
-                <Text style={styles.subtitle}>Square Feet</Text>
+                <Text style={styles.btn}>Square Feet</Text>
                 <Switch
                     onValueChange={() => setFeet(!feet)}
                     value={feet}
                 />
-
-                <View>
-                    <Text style={styles.subtitle}>Square Meters</Text>
-                </View>
-
+                <Text style={styles.btn}>Square Meters</Text>
+                
             </View>
-            <Button
-                title="Calculate"
-                onPress={Calculate}
-            />
+            
+            <View style={styles.calc}>
+                <Button style={styles.calc}
+                    title="Calculate"
+                    onPress={Calculate}
+                />
+            </View>
+            
             <View>
                 <Text style={styles.subtitle}>Before Tax</Text>
                 <Text style={styles.subtitle}>Flooring Cost: {flooring_cost}</Text>
                 <Text style={styles.subtitle}>Installation Cost: {installation_cost}</Text>
                 <Text style={styles.subtitle}>Total Cost: {total_cost}</Text>
                 <Text style={styles.subtitle}>{message}</Text>
+                <Text></Text>
             </View>
 
             <View>
@@ -107,6 +121,7 @@ function Main({ navigation }) {
                 <Text style={styles.subtitle}>Installation Cost: {installation_cost * 0.13}</Text>
                 <Text style={styles.subtitle}>Total Cost: {total_cost * 0.13}</Text>
                 <Text style={styles.subtitle}>{message}</Text>
+                <Text></Text>
             </View>
 
 
@@ -117,19 +132,31 @@ function Main({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#ffb380',
+        margin:20,
+        borderRadius:20
     },
     title: {
-        fontSize: 30,
+        fontSize: 34,
         fontWeight: 'bold',
         marginBottom: 20,
+        fontFamily: 'Didot-Italic',
     },
     subtitle: {
-        fontSize: 20,
+        fontSize: 18,
         marginBottom: 10,
+        textAlign:'right',
+        fontFamily: 'Baskerville-BoldItalic',
+        margin:4
     },
+    btn:{
+        margin:10,
+        fontFamily: 'Baskerville-BoldItalic',
+        fontSize: 16,
+    },
+
     input: {
         height: 40,
         width: 200,
@@ -146,6 +173,35 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#fff',
+        padding: 5,
+        borderRadius:50,
+        borderWidth:2,
+        marginBottom:1
+
+    },
+    remember: {
+        borderWidth:2,
+        height:40,
+        width:200,
+        borderRadius:100,
+        padding:8,
+        backgroundColor:"white",
+    },
+    calc:{
+        padding:3,
+        margin:10,
+        borderWidth:2,
+        backgroundColor:'white',
+        borderRadius:20
+
+    },
+    div:{
+        textAlign:"center",
+        margin:2,
+        fontFamily: 'Baskerville-BoldItalic',
+        fontSize: 16,
+
     }
 });
 
